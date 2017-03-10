@@ -1,0 +1,6 @@
+framework module Pods_LifeTreasure {
+  umbrella header "Pods-LifeTreasure-umbrella.h"
+
+  export *
+  module * { export * }
+}
