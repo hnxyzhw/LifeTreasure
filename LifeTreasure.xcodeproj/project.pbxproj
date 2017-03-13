@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3ED8C28FF9A1C3070F60478B /* Pods_LifeTreasure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E451588DC9559C98D148AF /* Pods_LifeTreasure.framework */; };
+		F31D256D1E764B2A00B06DE3 /* RequestServerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31D256C1E764B2A00B06DE3 /* RequestServerFactory.swift */; };
 		F3288E2E1E727CED00002259 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3288E2D1E727CED00002259 /* AppDelegate.swift */; };
 		F3288E301E727CED00002259 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3288E2F1E727CED00002259 /* ViewController.swift */; };
 		F3288E331E727CED00002259 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3288E311E727CED00002259 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		07E451588DC9559C98D148AF /* Pods_LifeTreasure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeTreasure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2732A6D87CCAD2EA95E8D670 /* Pods-LifeTreasure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeTreasure.release.xcconfig"; path = "Pods/Target Support Files/Pods-LifeTreasure/Pods-LifeTreasure.release.xcconfig"; sourceTree = "<group>"; };
 		B052D044D1C8B6088519B76C /* Pods-LifeTreasure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeTreasure.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeTreasure/Pods-LifeTreasure.debug.xcconfig"; sourceTree = "<group>"; };
+		F31D256C1E764B2A00B06DE3 /* RequestServerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestServerFactory.swift; sourceTree = "<group>"; };
 		F3288E2A1E727CED00002259 /* LifeTreasure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeTreasure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3288E2D1E727CED00002259 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3288E2F1E727CED00002259 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		F3288E4A1E72852500002259 /* Server */ = {
 			isa = PBXGroup;
 			children = (
+				F31D256C1E764B2A00B06DE3 /* RequestServerFactory.swift */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3288E521E72A7E900002259 /* TableViewCell.swift in Sources */,
+				F31D256D1E764B2A00B06DE3 /* RequestServerFactory.swift in Sources */,
 				F3288E301E727CED00002259 /* ViewController.swift in Sources */,
 				F3288E2E1E727CED00002259 /* AppDelegate.swift in Sources */,
 			);

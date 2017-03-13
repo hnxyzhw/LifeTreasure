@@ -19,9 +19,20 @@ class TableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
+    }
+    required init?(coder aDecoder:NSCoder){
+        super.init(coder: aDecoder)
+    }
+    
+    override init(style:UITableViewCellStyle, reuseIdentifier:String?) {
+        
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         if !self.isEqual(nil) {
-            self.setUI()
+            self.selectionStyle = UITableViewCellSelectionStyle.none
+            self.setUI();
         }
+        
     }
     
     func setUI(){
@@ -33,6 +44,12 @@ class TableViewCell: UITableViewCell {
         iconimageView.backgroundColor = UIColor.lightGray
         self.contentView.addSubview(iconimageView)
         
+    }
+    
+    //MARK:- 设置数据源
+    public func setData(cellData data: AnyObject){
+        let dataStr: NSString = (data as? NSString)!
+        self.titleLab.text = dataStr as String
     }
 
 }

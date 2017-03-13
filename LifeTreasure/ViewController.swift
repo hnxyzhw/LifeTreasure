@@ -52,8 +52,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         
         //cell?.textLabel?.text = "\(self.rowArray[indexPath.row])"
-        cell.titleLab?.text = "row\(self.rowArray[indexPath.row])"
+        //cell.titleLab?.text = "row\(self.rowArray[indexPath.row])"
+        let data = "row\(self.rowArray[indexPath.row])"
         
+        cell.setData(cellData: data as AnyObject)
         return cell
     }
     
