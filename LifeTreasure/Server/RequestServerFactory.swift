@@ -20,13 +20,13 @@ class RequestServerFactory {
 
 extension RequestServerFactory{
     //MARK: - Get请求
-    func getRequest(urlString: String, params: [String : Any], success:@escaping (_ response : [NSString :AnyObject])->(), failure: @escaping (_ error: Error)->()){
+    func getRequest(urlString: String, params: [String : Any], success:@escaping (_ response : [String :Any])->(), failure: @escaping (_ error: Error)->()){
         Alamofire.request(urlString, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result{
             case .success(let value):
                 //当响应成功是，使用临时变量value接受服务器返回的信息并判断是否为[String: AnyObject]类型 如果是那么将其传给其定义方法中的success
                 //if let value = response.result.value as? [String: AnyObject] {
-                success(value as! [NSString : AnyObject])
+                success(value as! [String : Any])
                 //}
                 //let json = JSON(value)
                 //print(json)

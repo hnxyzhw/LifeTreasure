@@ -37,19 +37,31 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func loadData() {
 
-        //https://route.showapi.com/582-2?key=&needContent=1&page=&showapi_appid=32921&showapi_timestamp=&typeId=2&showapi_sign=cc5b4721bb394890b2cd75128b1189f4
-        let url:String = "https://route.showapi.com/582-2"
-        
-        let parameters: Dictionary = ["key":"", "needConten":"1", "page":"", "showapi_appid":"32917", "showapi_timestamp":"", "typeId":"2", "showapi_sign":NSString.md5(forUpper32Bate: "needContent1showapi_appid32917typeId2cc5b4721bb394890b2cd75128b1189f4")]
-        
-        RequestServerFactory.sharedInstance.getRequest(urlString: url, params: parameters, success: { (json)-> Void in
-//            if (JSONSerialization.isValidJSONObject(json)){
-//                let data = try? JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
-//                let resultDic: NSDictionary =  NSKeyedUnarchiver.unarchiveObject(with: data!) as! NSDictionary
-//                print(resultDic)
-//            }
-            print(json)
+//        let url:String = "https://route.showapi.com/582-2"
+        let md5Sign:NSString = NSString.md5(forUpper32Bate: "needContent1page1showapi_appid32921typeId2cc5b4721bb394890b2cd75128b1189f4") as NSString
+        print(md5Sign)
+//        let parameters: Dictionary = ["key":"", "needConten":"1", "page":"1", "showapi_appid":"32921", "showapi_timestamp":"", "typeId":"2", "showapi_sign":md5Sign]
+        //https://route.showapi.com/582-2?key=&needContent=1&page=1&showapi_appid=32921&showapi_timestamp=&typeId=2&showapi_sign=C2AA95E21357ED6E798E9DC00BDE2976
+        let newurlstr = "https://route.showapi.com/582-2?key=&needContent=1&page=1&showapi_appid=32921&showapi_timestamp=&typeId=2&showapi_sign=" + (md5Sign as String)
+        RequestServerFactory.sharedInstance.getRequest(urlString: newurlstr, params: [:], success: { (json)-> Void in
             
+            //print(json["showapi_res_body"] as! [NSString:Any])
+            let showapi_res_body = json["showapi_res_body"] as? [String:Any]
+            let pagebean = showapi_res_body?["pagebean"] as? [String:Any]
+            let contentlist = pagebean?["contentlist"] as? NSArray
+            guard let dataArray = contentlist else
+            {
+                return
+            }
+            
+            var dataList:[WeChatFeaturedArticleModel] = []
+            for dic in dataArray{
+                let model:WeChatFeaturedArticleModel = WeChatFeaturedArticleModel(dic: dic as! [String : Any] as [String : AnyObject])
+                model.setAttribut(dic: dic as! [String : AnyObject])
+                dataList.append(model)
+            }
+            let firsModel = dataList[0]
+            print(firsModel.articleId!)
         }, failure:{(error) -> Void in
             print(error)
         })

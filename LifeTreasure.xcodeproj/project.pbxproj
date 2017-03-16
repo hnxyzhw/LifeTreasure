@@ -16,6 +16,8 @@
 		F3288E351E727CED00002259 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3288E341E727CED00002259 /* Assets.xcassets */; };
 		F3288E381E727CED00002259 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3288E361E727CED00002259 /* LaunchScreen.storyboard */; };
 		F3288E521E72A7E900002259 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3288E511E72A7E900002259 /* TableViewCell.swift */; };
+		F35416231E7A5F9C000DA8D0 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35416221E7A5F9C000DA8D0 /* BaseModel.swift */; };
+		F35416251E7A6145000DA8D0 /* WeChatFeaturedArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35416241E7A6145000DA8D0 /* WeChatFeaturedArticleModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		F3288E371E727CED00002259 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3288E391E727CED00002259 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3288E511E72A7E900002259 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		F35416221E7A5F9C000DA8D0 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		F35416241E7A6145000DA8D0 /* WeChatFeaturedArticleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatFeaturedArticleModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 		F3288E461E7284C000002259 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F35416261E7A7DA9000DA8D0 /* ViewModel */,
 				F3288E471E7284C000002259 /* Common */,
 				F3288E491E7284C000002259 /* Entity */,
 			);
@@ -173,6 +178,7 @@
 		F3288E481E7284C000002259 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				F35416221E7A5F9C000DA8D0 /* BaseModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -180,6 +186,7 @@
 		F3288E491E7284C000002259 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				F35416241E7A6145000DA8D0 /* WeChatFeaturedArticleModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -219,6 +226,13 @@
 			children = (
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		F35416261E7A7DA9000DA8D0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,6 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35416251E7A6145000DA8D0 /* WeChatFeaturedArticleModel.swift in Sources */,
+				F35416231E7A5F9C000DA8D0 /* BaseModel.swift in Sources */,
 				F3288E521E72A7E900002259 /* TableViewCell.swift in Sources */,
 				F31D256D1E764B2A00B06DE3 /* RequestServerFactory.swift in Sources */,
 				F32700981E794B51008A80C7 /* NSString+MD5.m in Sources */,
