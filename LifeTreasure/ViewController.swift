@@ -27,14 +27,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return array
     }()
     
+    //数据源数组,使用懒加载
+    lazy var dataList: [WeChatFeaturedArticleModel] = {
+        return []
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addSubview(self.tableview)
-        
         self.loadData()
+        
+        self.view.addSubview(self.tableview)
     }
     
+    //MARK: - 加载数据
     func loadData() {
 
 //        let url:String = "https://route.showapi.com/582-2"
@@ -43,6 +49,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //        let parameters: Dictionary = ["key":"", "needConten":"1", "page":"1", "showapi_appid":"32921", "showapi_timestamp":"", "typeId":"2", "showapi_sign":md5Sign]
         //https://route.showapi.com/582-2?key=&needContent=1&page=1&showapi_appid=32921&showapi_timestamp=&typeId=2&showapi_sign=C2AA95E21357ED6E798E9DC00BDE2976
         let newurlstr = "https://route.showapi.com/582-2?key=&needContent=1&page=1&showapi_appid=32921&showapi_timestamp=&typeId=2&showapi_sign=" + (md5Sign as String)
+        weak var weakSelf = self
         RequestServerFactory.sharedInstance.getRequest(urlString: newurlstr, params: [:], success: { (json)-> Void in
             
             //print(json["showapi_res_body"] as! [NSString:Any])
@@ -60,8 +67,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 model.setAttribut(dic: dic as! [String : AnyObject])
                 dataList.append(model)
             }
-            let firsModel = dataList[0]
-            print(firsModel.articleId!)
+            weakSelf!.dataList = dataList;
+            weakSelf?.tableview.reloadData()
+            //let firsModel = dataList[0]
+            //print(firsModel.articleId!)
+            
         }, failure:{(error) -> Void in
             print(error)
         })
@@ -82,11 +92,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     /// MARK: UITableviewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.rowArray.count
+        return dataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,9 +105,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             cell = TableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: identifier)
         }
         
-        //cell?.textLabel?.text = "\(self.rowArray[indexPath.row])"
-        //cell.titleLab?.text = "row\(self.rowArray[indexPath.row])"
-        let data = "row\(self.rowArray[indexPath.row])"
+       
+        let data = dataList[indexPath.row]
+        //"row\(self.rowArray[indexPath.row])"
         
         cell.setData(cellData: data as AnyObject)
         return cell
@@ -119,25 +129,25 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return true
     }
     
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return ["a", "b", "c"]
-    }
+//    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+//        return ["a", "b", "c"]
+//    }
+//    
+//    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+//        if title == "a" {
+//            print("点击a定位到第一个section")
+//            return 1
+//        }
+//        return 1
+//    }
     
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        if title == "a" {
-            print("点击a定位到第一个section")
-            return 1
-        }
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .delete
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        //print("移动cell，对数据远进行处理")
-    }
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .delete
+//    }
+//    
+//    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//        //print("移动cell，对数据远进行处理")
+//    }
     
     
     /// MARK: UITableviewDataSorucePrefetching
@@ -150,34 +160,37 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     ///mark UITableviewDelegate
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //print("即将展示cell")
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        //print("即将展示header")
-    }
-    
-    
-    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        //print("即将暂时footer")
-    }
-    
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //print("已经结束展示cell")
-    }
-    
-    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
-        //print("已经结束展示header")
-    }
-    
-    func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
-        //print("已经结束展示footer")
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 100
     }
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        //print("即将展示cell")
+//    }
+//    
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        //print("即将展示header")
+//    }
+//    
+//    
+//    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+//        //print("即将暂时footer")
+//    }
+//    
+//    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        //print("已经结束展示cell")
+//    }
+//    
+//    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+//        //print("已经结束展示header")
+//    }
+//    
+//    func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+//        //print("已经结束展示footer")
+//    }
+    
+    
 
 }
 

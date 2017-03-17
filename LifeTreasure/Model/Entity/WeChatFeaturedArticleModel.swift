@@ -16,21 +16,21 @@ class WeChatFeaturedArticleModel: BaseModel {
     var ct:String?
     // 日期
     var date:String?
-    
+    // 文章id
     var articleId:String?
-    
+    //喜欢数
     var like_num:NSNumber?
-    
+    // 阅读数
     var read_num:NSNumber?
-    
+    // 标题
     var title:String?
-    
+    // 文章类型id
     var typeId:NSNumber?
-    
+    // 文章类型名
     var typeName:String?
-    
+    // 连接
     var url:String?
-    
+    // 用户头像
     var userLogo_code:String?
     
     var userName:String?
